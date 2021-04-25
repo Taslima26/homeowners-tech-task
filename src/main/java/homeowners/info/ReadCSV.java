@@ -1,11 +1,18 @@
 package homeowners.info;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
+/*
+ * This class read csc file using buffer reader
+ * Split the names by comma provided and
+ * split the names in to first name,last name,
+ * initial and title specified as in read me
+ * document*/
 
 public class ReadCSV {
 
@@ -37,15 +44,56 @@ public class ReadCSV {
         return homeOwners;
     }
 
-    public   static HomeOwners createHomeowner(String[] metadata) {
+    public static HomeOwners createHomeowner(String[] metadata) {
         String data = metadata[0];
 
         String[] splitData = data.split("\\s+");
-        System.out.println(Arrays.toString(splitData));
-        System.out.println(splitData.length);
         if (splitData.length == 1) {
             return null;
-        } else if (splitData.length == 3 && splitData[1] != "and" && splitData[1].length() > 2) {
+        } else if (splitData.length != 3 || splitData[1].equals("and") || splitData[1].length() <= 2) {
+            if (splitData.length == 3 && !splitData[1].equals("and") && splitData[1].length() <= 2) {
+                String title1 = splitData[0];
+                String firstName1 = null;
+                String lastName1 = splitData[2];
+                String initial1 = splitData[1];
+
+                return new HomeOwners(title1, firstName1, lastName1, initial1);
+            } else if (splitData.length == 4) {
+                String title1 = splitData[0];
+                String title2 = splitData[2];
+                String firstName1 = null;
+                String firstName2 = null;
+                String lastName2 = null;
+                String initial1 = null;
+                String initial2 = null;
+                String lastName1 = splitData[3];
+                return new HomeOwners(title1, firstName1, lastName1, initial1, title2, firstName2, lastName2, initial2);
+            } else if (splitData.length == 5) {
+                String title1 = splitData[0];
+                String title2 = splitData[2];
+                String firstName1 = splitData[3];
+                String lastName1 = splitData[4];
+                String initial1 = null;
+                String firstName2 = null;
+                String lastName2 = null;
+                String initial2 = null;
+                return new HomeOwners(title1, firstName1, lastName1, initial1, title2, firstName2, lastName2, initial2);
+
+            } else if (splitData.length == 7) {
+                String title1 = splitData[0];
+                String title2 = splitData[4];
+                String firstName1 = splitData[1];
+                String lastName1 = splitData[2];
+                String initial1 = null;
+                String firstName2 = splitData[5];
+                String lastName2 = splitData[6];
+                String initial2 = null;
+                return new HomeOwners(title1, firstName1, lastName1, initial1, title2, firstName2, lastName2, initial2);
+
+            } else {
+                return null;
+            }
+        } else {
             String title1 = splitData[0];
             String firstName1 = splitData[1];
             String lastName1 = splitData[2];
@@ -54,59 +102,10 @@ public class ReadCSV {
 
             return new HomeOwners(title1, firstName1, lastName1, initial1);
 
-        } else if (splitData.length == 3 && splitData[1] != "and" && splitData[1].length() <= 2) {
-            String title1 = splitData[0];
-            String firstName1 = null;
-            String lastName1 = splitData[2];
-            String initial1 = splitData[1];
-
-            return new HomeOwners(title1, firstName1, lastName1, initial1);
-        } else if(splitData.length==4){
-            String title1=splitData[0];
-            String title2=splitData[2];
-            String firstName1=null;
-            String firstName2=null;
-            String lastName2=null;
-            String initial1=null;
-            String initial2=null;
-            String lastName1=splitData[3];
-            return  new HomeOwners(title1,firstName1,lastName1,initial1,title2,firstName2,lastName2,initial2);
-        }
-        else if(splitData.length==5){
-            String title1=splitData[0];
-            String title2=splitData[2];
-            String firstName1=splitData[3];
-            String lastName1=splitData[4];
-            String initial1=null;
-            String firstName2=null;
-            String lastName2=null;
-            String initial2=null;
-            return  new HomeOwners(title1,firstName1,lastName1,initial1,title2,firstName2,lastName2,initial2);
-
-        }
-        else if(splitData.length==7){
-            String title1=splitData[0];
-            String title2=splitData[4];
-            String firstName1=splitData[1];
-            String lastName1=splitData[2];
-            String initial1=null;
-            String firstName2=splitData[5];
-            String lastName2=splitData[6];
-            String initial2=null;
-            return  new HomeOwners(title1,firstName1,lastName1,initial1,title2,firstName2,lastName2,initial2);
-
-        }
-
-
-
-        else {
-            return null;
         }
 
 
     }
-
-
 
 
 }
