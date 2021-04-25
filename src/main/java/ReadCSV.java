@@ -41,12 +41,6 @@ public class ReadCSV {
         String[] splitData = data.split("\\s+");
         System.out.println(Arrays.toString(splitData));
         System.out.println(splitData.length);
-
-        Set<String> specialCases = new HashSet<String>();
-        specialCases.add("Dr");
-        specialCases.add("Prof");
-        specialCases.add("Sir");
-        specialCases.add("Madam");
         if (splitData.length == 1) {
             return null;
         } else if (splitData.length == 3 && splitData[1] != "and" && splitData[1].length() > 2) {
@@ -63,7 +57,6 @@ public class ReadCSV {
             String firstName1 = null;
             String lastName1 = splitData[2];
             String initial1 = splitData[1];
-
 
             return new HomeOwners(title1, firstName1, lastName1, initial1);
         } else if(splitData.length==4){
