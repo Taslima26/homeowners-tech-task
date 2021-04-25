@@ -1,4 +1,4 @@
-HomeOwners.java
- HomeOwners
-ReadCSV.java
- ReadCSV
+homeowners/info/ReadCSV.java
+ homeowners.info.ReadCSV
+homeowners/info/HomeOwners.java
+ homeowners.info.HomeOwners

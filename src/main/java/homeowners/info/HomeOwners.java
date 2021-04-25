@@ -1,9 +1,21 @@
+package homeowners.info;
+
+/*
+This class is responsible keeping track of
+homeowners name information such as firstname,
+lastname ,title and initials
+
+ */
 public class HomeOwners {
     private String title1;
     private String firstName1;
     private String initial1;
     private String lastName1;
     private String title2;
+    private String firstName2;
+    private String  lastName2;
+    private String initial2;
+
 
     public String getTitle1() {
         return title1;
@@ -69,9 +81,6 @@ public class HomeOwners {
         this.initial2 = initial2;
     }
 
-    private String firstName2;
-    private String  lastName2;
-    private String initial2;
 
 
     public HomeOwners(String title1,String  firstName1,String lastName1,String initial1){
